@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void dfs(int i,int j,vector<vector<int>>& G1, vector<vector<int>>& G2, int &flag, int m,int n)
+    {
+        if(i<0||j<0||i>=m||j>=n||G2[i][j]==0)return;
+        if(G1[i][j]==0)flag=0; 
+        G2[i][j]=0;
+        dfs(i+1,j,G1,G2, flag,m,n);
+        dfs(i-1,j,G1,G2, flag,m,n); 
+        dfs(i,j+1,G1,G2, flag,m,n);
+        dfs(i,j-1,G1,G2, flag,m,n);
+    }
+    int countSubIslands(vector<vector<int>>& G1, vector<vector<int>>& G2) { 
+        int ans=0; 
+        int m=G1.size(),n=G1[0].size();
+        for (int i=0;i<m;i++)
+        {
+            for (int j=0;j<n;j++)
+            {
+                if(G2[i][j])
+                {
+                    int flag=1; 
+                    dfs(i,j,G1,G2,flag,m,n); 
+                    ans+=flag;
+                }
+            } 
+        }
+        return ans;
+    }
+};
