@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> findSmallestSetOfVertices(int n, vector<vector<int>>& edges) {
+        unordered_map<int,bool>vis;
+        vector<int>ans;
+        for(int i=0;i<edges.size();i++){
+            vis[edges[i][1]]=true;
+        }
+        
+        for(int i=0;i<edges.size();i++)
+        {
+            if(vis[edges[i][0]]==false){
+                ans.push_back(edges[i][0]);
+                vis[edges[i][0]]=true;
+            }
+        }
+        return ans;
+        
+    }
+};
