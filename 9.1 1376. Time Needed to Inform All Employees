@@ -1,0 +1,31 @@
+class Solution {
+public:
+   int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {
+      int ret = 0;
+      vector <int> graph[n];
+      int root = -1;
+      for(int i = 0; i < manager.size(); i++){
+         int u = manager[i];
+         int v = i;
+         if(u == -1) {
+            root = v;
+            continue;
+         }
+         graph[u].push_back(v);
+      }
+      queue <int> q;
+      q.push(root);
+      vector <int> time(n);
+      while(!q.empty()){
+         int curr = q.front();
+         q.pop();
+         if(!graph[curr].size()) continue;
+         for(int i = 0; i < graph[curr].size(); i++){
+            q.push(graph[curr][i]);
+            time[graph[curr][i]] = time[curr] + informTime[curr];
+         }
+      }
+      for(int i = 0; i <n; i++)ret = max(ret, time[i]);
+      return ret;
+   }
+};
