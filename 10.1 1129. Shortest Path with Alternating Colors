@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& red_edges, vector<vector<int>>& blue_edges) {
+
+        vector<unordered_map<int, unordered_set<int>>> g(n);
+        for(vector<int>& edge: red_edges)
+            g[edge[0]][edge[1]].insert(1);
+        for(vector<int>& edge: blue_edges)
+            g[edge[0]][edge[1]].insert(2);
+
+        queue<pair<int, int>> q;
+        unordered_set<int> visited;
+        vector<int> res(n, -1);
+
+        res[0] = 0;
+        for(const pair<int, unordered_set<int>>& p: g[0])
+            if(p.first)
+                for(int color: p.second){
+                    res[p.first] = 1;
+                    q.push(make_pair(p.first * 10 + color, 1));
+                    visited.insert(p.first * 10 + color);
+                }
+
+        while(!q.empty()){
+            int cur = q.front().first / 10;
+            int color = q.front().first % 10;
+            int step = q.front().second;
+            q.pop();
+
+            for(const pair<int, unordered_set<int>>& p: g[cur]){
+                for(int newcolor: p.second){
+                    int hash = p.first * 10 + newcolor;
+                    if(!visited.count(hash) && newcolor != color){
+                        q.push(make_pair(hash, step + 1));
+                        if(res[p.first] == -1)
+                            res[p.first] = step + 1;
+                        visited.insert(hash);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
