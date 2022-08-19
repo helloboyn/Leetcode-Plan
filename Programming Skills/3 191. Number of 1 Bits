@@ -2,12 +2,14 @@ class Solution {
 public:
     int hammingWeight(uint32_t n) {
     int count = 0;
-    
-    while (n) {
-        n &= (n - 1);
+    while (n){
+        n &= (n-1);
+/*What does &= mean in C?  &= is and equals , |= is or equals . 
+These perform bit-wise operations with the left hand and right hand arguments, 
+and assign the result into the left hand side.*/
         count++;
-    }
-    
+        }
     return count;
-}
+    }
 };
+
