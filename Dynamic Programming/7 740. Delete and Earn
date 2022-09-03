@@ -1,0 +1,13 @@
+class Solution {
+public:
+	int dp[10003];
+	int deleteAndEarn(vector<int>& nums) {
+		memset(dp, 0, sizeof dp);
+		vector<int> a(10001, 0);
+		for (auto num : nums) a[num] += num;
+		for (int i = 10000; i >= 0; --i) {
+			dp[i] = max(a[i] + dp[i + 2], dp[i + 1]);
+		}
+		return dp[0];
+	}
+};
