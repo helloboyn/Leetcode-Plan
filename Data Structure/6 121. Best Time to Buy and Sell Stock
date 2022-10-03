@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int sell=0;
+        int hold=INT_MIN;
+        for(const int prices:prices){
+            sell=max(sell,hold+prices);
+            hold=max(hold,-prices);
+        }
+        return sell;
+    }
+};
