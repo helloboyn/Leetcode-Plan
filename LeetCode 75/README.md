@@ -155,13 +155,6 @@ LeetCode 75 is a curated list of 75 essential coding problems that cover key top
 2. **Pattern Recognition**: Focus on problem categories
 3. **Time Management**: Track solve times
 4. **Review**: Revisit tough problems weekly
-
-🔗 **Official List**: [LeetCode 75 Study Plan](https://leetcode.com/studyplan/leetcode-75/)
-
----
-
-## 🚀 How to Use This Plan?
-1. **Daily Practice**: Solve 1-2 problems daily
 2. **Track Progress**: Mark completed problems
 3. **Focus on Weak Areas**: Use the topic-wise organization
 
